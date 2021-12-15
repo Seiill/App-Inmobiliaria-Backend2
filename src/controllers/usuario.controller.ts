@@ -21,6 +21,7 @@ import {
 import {Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
 import { AutenticacionService } from '../services';
+import { Llaves } from '../services/Config/llaves';
 const fetch = require('node-fetch')
 
 export class UsuarioController {
@@ -58,7 +59,7 @@ usuario.clave = claveCifrada;
     let destino = usuario.correo;
     let asunto = "Registro en FINCAREAlTOR"
     let contenido = `Hola${usuario.Nombre}, su usuario es${usuario.correo} y su contraseñas es${clave}`;
-    fetch(`http://127.0.0.1:5001/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
+    fetch(`${Llaves.urlServicioNotificaciones}/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
     .then((data : any) => {
       console.log(data);
     })
